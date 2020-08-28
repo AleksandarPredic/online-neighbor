@@ -1,0 +1,56 @@
+@import "../../assets/scss/variables/colors";
+@import "../../assets/scss/variables/layout";
+
+$chat__padding-lr: 30px;
+.Chat {
+  z-index: 100;
+  background-color: $background__chat;
+  position: relative;
+  max-width: $brakepoint__sm-max;
+  margin: 50px auto;
+  height: calc(100vh - 100px);
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+
+  > header {
+    margin: 0;
+    border-bottom: 2px solid $color__white;
+    padding: 0 $chat__padding-lr;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    h1 {
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+      font-size: 2rem;
+    }
+  }
+
+  > main  {
+    padding: 15px $chat__padding-lr;
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  > footer {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px $chat__padding-lr;
+    border-top: 2px solid $color__white;
+    font-size: 12px;
+  }
+}

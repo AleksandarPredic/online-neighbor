@@ -1,0 +1,55 @@
+@import "../../../assets/scss/variables/colors";
+@import "../../../assets/scss/variables/layout";
+@import "../../../assets/scss/variables/misc";
+
+.Message {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 0 0 30px 0;
+
+  &__image {
+    height: 60px;
+    width: 60px;
+    transform: scaleX(-1);
+    border-radius: 50%;
+    border: $chat__images-border-width solid white;
+    position: relative;
+    overflow: hidden;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__messages{
+    border: 1px solid $border__chat-message;
+    padding: 10px;
+    position: relative;
+
+    > p {
+      margin: 0 0 5px 0;
+    }
+  }
+
+  &--robot {
+    .Message__image {
+      margin: 0 20px 0 0;
+    }
+  }
+
+  &--human {
+    margin-left: auto;
+
+    .Message__image {
+      order: 1;
+      margin: 0 0 0 20px;
+    }
+
+    .Message__messages{
+      order: 0;
+    }
+  }
+}
