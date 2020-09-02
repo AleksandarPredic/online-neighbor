@@ -1,0 +1,19 @@
+@import "src/assets/scss/variables/colors";
+@import "src/assets/scss/variables/layout";
+@import "src/assets/scss/variables/misc";
+
+.ProductsSearch {
+  width: 100%;
+
+  input {
+    width: calc(100% - (#{$chat__padding-lr} * 2));
+    height: 4rem;
+    border: 1px solid $border__main;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: $color__text-secondary;
+    line-height: 1;
+    font-size: 1.6rem;
+    margin: 10px $chat__padding-lr 0 $chat__padding-lr;
+  }
+}

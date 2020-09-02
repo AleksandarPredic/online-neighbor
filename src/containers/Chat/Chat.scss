@@ -1,14 +1,14 @@
 @import "../../assets/scss/variables/colors";
 @import "../../assets/scss/variables/layout";
+@import "../../assets/scss/variables/misc";
 
-$chat__padding-lr: 30px;
 .Chat {
   z-index: 100;
   background-color: $background__chat;
   position: relative;
   max-width: $brakepoint__sm-max;
-  margin: 50px auto;
-  height: calc(100vh - 100px);
+  margin: 0 auto;
+  height: 100vh;
   overflow: hidden;
   display: flex;
   justify-content: space-between;
@@ -45,12 +45,20 @@ $chat__padding-lr: 30px;
 
   > footer {
     width: 100%;
-    height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px $chat__padding-lr;
+    flex-direction: column;
     border-top: 2px solid $color__white;
     font-size: 12px;
+
+    > small {
+      margin: 10px 0 0 0;
+      padding: 5px $chat__padding-lr 10px $chat__padding-lr;
+    }
+  }
+
+  @media all and (display-mode: browser){
+    height: 90vh;
   }
 }

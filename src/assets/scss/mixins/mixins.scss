@@ -1,0 +1,15 @@
+@mixin roundedImage($border__color) {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  border: $chat__images-border-width solid $border__color;
+  position: relative;
+  overflow: hidden;
+
+  img {
+    height: 100%;
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+}
