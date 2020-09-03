@@ -117,10 +117,6 @@ class Chat extends Component {
       let prevProduct = prevProducts[productId];
       prevProducts[productId] = --prevProduct;
 
-      /*if (prevProducts[productId] === 0) {
-        delete prevProducts[productId];
-      }*/
-
       return {
         order: {
           products: prevProducts
