@@ -115,9 +115,19 @@
     }
   }
 
-  @media all and (max-width: $brakepoint__sx-max){
+  @media all and (max-width: $brakepoint__sx-max) and (min-width: $brakepoint__sxx-min){
     .Product {
       flex: 0 0 38vw;
+    }
+  }
+
+  @media all and (max-width: $brakepoint__sxx-max){
+    .Products__wrapper {
+      height: 170px;
+    }
+
+    .Product {
+      flex: 0 0 55vw;
     }
   }
 }
