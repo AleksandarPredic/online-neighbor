@@ -29,7 +29,7 @@ class Chat extends Component {
             id: product.id,
             name: product.name,
             description: product.description,
-            price: product.price,
+            price: Number(product.price),
             regularPrice: product.regular_price,
             onSale: product.on_sale,
             images: []
@@ -108,25 +108,67 @@ class Chat extends Component {
           products: prevProducts
         }
       }
-    });
+    }, this.updateQtyForSearchedProductsHandler);
   }
 
   chatOrderRemoveProductsHandler = (productId) => {
-    this.setState((prevstate, props) => {
-      let prevProducts = {...prevstate.order.products};
+    this.setState((prevState, props) => {
+      let prevProducts = {...prevState.order.products};
       let prevProduct = prevProducts[productId];
       prevProducts[productId] = --prevProduct;
 
-      if (prevProducts[productId] === 0) {
+      /*if (prevProducts[productId] === 0) {
         delete prevProducts[productId];
-      }
+      }*/
 
       return {
         order: {
           products: prevProducts
         }
       }
+    }, () => {
+      this.updateQtyForSearchedProductsHandler();
+      this.removeOrderedProductsHandler();
     });
+  }
+
+  updateQtyForSearchedProductsHandler = () => {
+    const orderProducts = {...this.state.order.products};
+    let searchedProducts = Object.values({...this.state.searchedProducts}).map(product => {
+      if (typeof orderProducts[product.id] === "undefined") {
+        return {...product};
+      }
+
+      let newProduct = {...product};
+      newProduct.qty = orderProducts[product.id];
+      return newProduct;
+    });
+
+    this.setState((prevState, props) => {
+      return {
+        searchedProducts: {...searchedProducts}
+      }
+    });
+  }
+
+  removeOrderedProductsHandler =() => {
+    const orderProducts = {...this.state.order.products};
+
+    // Remove products that have 0 qty from ordered products
+    for (let productId of Object.keys(orderProducts)) {
+      if (orderProducts[productId] === 0) {
+        delete orderProducts[productId];
+      }
+    }
+
+    this.setState((prevState, props) => {
+      return {
+        order: {
+          products: orderProducts
+        }
+      }
+    });
+
   }
 
   render() {

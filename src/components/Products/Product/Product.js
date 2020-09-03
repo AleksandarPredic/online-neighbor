@@ -14,7 +14,7 @@ const product = props => {
         <div className="Product__images-wrapper">{images}</div>
         {props.qty ? <span className="Product__qty">{props.qty}</span> : null}
       </div>
-      {props.price ? <span className="Product__price">{props.price} DIN</span> : null}
+      {props.price ? <span className="Product__price">{props.price.toFixed(2)} DIN</span> : null}
       <h3 className="Product__name">{props.name}</h3>
     </React.Fragment>;
 
@@ -26,7 +26,7 @@ const product = props => {
 product.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
   qty: PropTypes.number,
   images: PropTypes.array,
   onClickProductCallback: PropTypes.func
