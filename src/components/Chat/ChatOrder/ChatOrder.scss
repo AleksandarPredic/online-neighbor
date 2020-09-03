@@ -1,0 +1,36 @@
+@import "../../../assets/scss/variables/colors";
+
+.ChatOrder {
+  padding: 15px 0;
+
+  .Products {
+    border: 1px solid $background__chat-secondary;
+    border-radius: 5px;
+
+    .Products__wrapper {
+      display: flex;
+      justify-content: flex-start;
+      align-items: stretch;
+      overflow-y: hidden;
+      overflow-x: auto;
+    }
+
+    .Product {
+      flex: 0 0 10rem;
+      margin: 0 10px;
+      padding: 10px 5px;
+
+      .Product__images {
+        text-align: center;
+      }
+
+      .Product__images-wrapper {
+        margin: 0 auto 5px 0;
+      }
+
+      .Product__name {
+        display: none;
+      }
+    }
+  }
+}

@@ -10,7 +10,7 @@
   margin: 0 0 20px 0;
 
   &__image {
-    @include roundedImage($chat__images-border-width);
+    @include roundedImage($color__white);
   }
 
   &__messages{
@@ -21,6 +21,7 @@
     > p {
       margin: 0 0 5px 0;
       color: $color__text-main;
+      font-size: 1.4rem;
     }
   }
 

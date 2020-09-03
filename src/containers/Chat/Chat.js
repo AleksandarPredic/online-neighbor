@@ -1,24 +1,30 @@
 import React, {Component} from 'react';
-//import PropTypes from 'prop-types';
 import './Chat.scss';
 import Backdrop from '../../components/UI/Backdrop/Backdrop';
 import Message from '../../components/Chat/Message/Message';
 import ProductsSearch from '../../components/Chat/ProductsSearch/ProductsSearch';
 import axiosProducts from '../../axios/axios-products';
-import Products from '../../components/Chat/Products/Products';
+import Products from '../../components/Products/Products';
+import ChatOrder from '../../components/Chat/ChatOrder/ChatOrder';
 
 class Chat extends Component {
   state = {
-    allProducts: null,
+    allProducts: {},
     searchValue: '',
-    searchedProducts: []
+    searchedProducts: {},
+    order: {
+      products: {} // id: qty
+    }
   }
 
   componentDidMount() {
+    // TODO: Cache data in localstorage https://gist.github.com/ryanflorence/1345787
     axiosProducts.get('/')
       .then(response => {
-        // TODO: add check if no products
-        const data = response.data.map(product => {
+        // TODO: add check if no products and show error message
+
+        let data = {};
+        for (const product of response.data) {
           let productData = {
             id: product.id,
             name: product.name,
@@ -31,16 +37,16 @@ class Chat extends Component {
 
           if (product.images.length > 0) {
             for (let image of product.images)
-            productData.images.push({
-              src: image.src,
-              alt: image.name
-            });
+              productData.images.push({
+                src: image.src,
+                alt: image.name
+              });
           }
 
-          return productData;
-        });
+          data[product.id] = productData;
+        }
 
-        this.setState((state, props) => {
+        this.setState((prevstate, props) => {
           return {
             allProducts: data
           }
@@ -55,8 +61,8 @@ class Chat extends Component {
   searchProductsHandler = (event) => {
     const searchVal = event.target.value;
 
-    const allProducts = [...this.state.allProducts];
-    const searchedProducts = allProducts.filter(product => {
+    const allProducts = {...this.state.allProducts};
+    const searchedProducts = Object.values(allProducts).filter(product => {
       const searchValues = searchVal.toLowerCase().split(' ');
       for (const word of searchValues) {
         if (product.name.toLowerCase().includes(word)) {
@@ -67,10 +73,58 @@ class Chat extends Component {
       return false;
     });
 
-    this.setState((state, props) => {
+    searchedProducts.map(product => product.qty = 0);
+
+    this.setState((prevstate, props) => {
       return {
         searchValue: searchVal,
-        searchedProducts: searchVal.length > 1 ? searchedProducts : []
+        searchedProducts: searchVal.length > 1 ? {...searchedProducts} : {}
+      }
+    });
+  }
+
+  clearProductSearchHandler = () => {
+    this.setState((prevState, props) => {
+      return {
+        searchValue: '',
+        searchedProducts: {}
+      }
+    });
+
+  }
+
+  chatOrderAddProductsHandler = (productId) => {
+    this.setState((prevstate, props) => {
+      let prevProducts = {...prevstate.order.products};
+      let prevProduct = prevProducts[productId];
+      if (typeof prevProduct !== 'undefined') {
+        prevProducts[productId] = ++prevProduct;
+      } else {
+        prevProducts[productId] = 1;
+      }
+
+      return {
+        order: {
+          products: prevProducts
+        }
+      }
+    });
+  }
+
+  chatOrderRemoveProductsHandler = (productId) => {
+    this.setState((prevstate, props) => {
+      let prevProducts = {...prevstate.order.products};
+      let prevProduct = prevProducts[productId];
+      prevProducts[productId] = --prevProduct;
+
+      if (prevProducts[productId] === 0) {
+        delete prevProducts[productId];
+      }
+
+      return {
+        order: {
+          products: prevProducts
+        }
       }
     });
   }
@@ -85,17 +139,25 @@ class Chat extends Component {
             <Message type="robot">
               {['Hi, I\'m your robot neighbor!', 'What groceries are you looking for?']}
             </Message>
-            <Message type="human">
-              {['Hi neighbor robot!!', 'What is the availability for these products?']}
-            </Message>
+            <ChatOrder
+              allProducts={this.state.allProducts}
+              products={this.state.order.products}
+              onClickProductCallback={this.chatOrderRemoveProductsHandler}
+            />
           </main>
           <footer>
-            <Products products={this.state.searchedProducts} />
+            <Products
+              products={this.state.searchedProducts}
+              show={Object.values(this.state.searchedProducts).length > 0}
+              onClickProductCallback={this.chatOrderAddProductsHandler}
+              message="Tap on the product to order it!"
+            />
             {
               this.state.allProducts
                 ? <ProductsSearch
                   searchProductsHandler={this.searchProductsHandler}
                   searchValue={this.state.searchValue}
+                  buttonClickHandler={this.clearProductSearchHandler}
                 />
                 : <p>Loading products...</p>
             }
@@ -106,7 +168,5 @@ class Chat extends Component {
     );
   }
 }
-
-Chat.propTypes = {};
 
 export default Chat;

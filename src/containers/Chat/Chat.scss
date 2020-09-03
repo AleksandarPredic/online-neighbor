@@ -36,11 +36,8 @@
   > main  {
     padding: 15px $chat__padding-lr;
     flex: 1;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
     width: 100%;
+    overflow-y: auto;
   }
 
   > footer {
@@ -51,6 +48,56 @@
     flex-direction: column;
     border-top: 2px solid $color__white;
     font-size: 12px;
+    position: relative;
+
+    > .Products {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      transform: translateY(-100%);
+      width: 100%;
+      background-color: $background__chat-secondary;
+      transition: height 0.3s ease-in-out, opacity 0.4s ease-in-out;
+
+      &--hide {
+        height: 0;
+        opacity: 0;
+      }
+
+      &--show {
+        height: 190px;
+        opacity: 1;
+      }
+
+      .Products__wrapper {
+        display: flex;
+        justify-content: flex-start;
+        align-items: stretch;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        height: 150px;
+        opacity: 1;
+        flex-wrap: nowrap;
+        margin: 10px 0 0 0;
+      }
+
+      .Product {
+        margin: 0 10px;
+        padding: 10px 5px;
+      }
+
+      .Product__price {
+        position: relative;
+        background-color: $color__text-secondary;
+        color: $color__white;
+        padding: 5px;
+        border-radius: 3px;
+        margin: 5px 0 0 0;
+        display: inline-block;
+        clear: both;
+      }
+    }
 
     > small {
       margin: 10px 0 0 0;
@@ -60,5 +107,17 @@
 
   @media all and (display-mode: browser){
     height: 90vh;
+  }
+
+  @media all and (min-width: $brakepoint__sx-min){
+    .Product {
+      flex: 0 0 28vw;
+    }
+  }
+
+  @media all and (max-width: $brakepoint__sx-max){
+    .Product {
+      flex: 0 0 38vw;
+    }
   }
 }

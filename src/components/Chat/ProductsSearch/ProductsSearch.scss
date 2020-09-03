@@ -4,16 +4,35 @@
 
 .ProductsSearch {
   width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px $chat__padding-lr;
 
   input {
-    width: calc(100% - (#{$chat__padding-lr} * 2));
     height: 4rem;
     border: 1px solid $border__main;
-    border-radius: 5px;
+    border-radius: 5px 0 0 5px;
     padding: 5px 10px;
     color: $color__text-secondary;
     line-height: 1;
     font-size: 1.6rem;
-    margin: 10px $chat__padding-lr 0 $chat__padding-lr;
+    flex: 1;
+    background: transparent;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0;
+  }
+
+  button {
+    width: 60px;
+    color: $color__white;
+    background-color: $color__text-secondary;
+    border-radius: 0 5px 5px 0;
+    border: none;
+    height: 4rem;
+    outline: none !important;
+    margin: 0;
   }
 }

@@ -1,6 +1,8 @@
+@import "../../../assets/scss/variables/misc";
+
 @mixin roundedImage($border__color) {
-  height: 60px;
-  width: 60px;
+  width: $chat__images-width;
+  height: $chat__images-height;
   border-radius: 50%;
   border: $chat__images-border-width solid $border__color;
   position: relative;

@@ -1,0 +1,38 @@
+@import "../../../assets/scss/variables/colors";
+@import "../../../assets/scss/variables/misc";
+@import "../../../assets/scss/mixins/mixins";
+
+.Product {
+  width: auto;
+  min-height: 0;
+
+  &__images {
+    position: relative;
+    width: $chat__images-width;
+
+    .Product__images-wrapper {
+      position: relative;
+      @include roundedImage($border__secondary);
+    }
+  }
+
+  .Product__qty {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #444;
+    border-radius: 50%;
+    color: white;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    z-index: 3;
+    font-size: 12px;
+  }
+
+  .Product__name {
+    font-size: 1.4rem;
+    margin: 10px 0 0 0;
+  }
+}
