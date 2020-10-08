@@ -5,8 +5,6 @@ import Message from '../Chat/Message/Message';
 import './OrderConfirmed.scss';
 
 const OrderConfirmed = props => {
-
-  // Use input to scroll to the new message only for demo.
   const scrollTo = useRef(null);
 
   useEffect(() => {
