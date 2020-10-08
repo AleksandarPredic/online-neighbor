@@ -28,6 +28,7 @@ const chatOrder = props => {
         message="Tap on the product to remove it!"
         onClickProductCallback={props.onClickProductCallback}
       />
+      {props.orderConfirmed ? null : <button onClick={props.onClickSubmitOrderCallback}>Order</button>}
     </div>
   );
 };
@@ -35,7 +36,9 @@ const chatOrder = props => {
 chatOrder.propTypes = {
   products: PropTypes.object.isRequired,
   allProducts: PropTypes.object.isRequired,
-  onClickProductCallback: PropTypes.func.isRequired
+  onClickProductCallback: PropTypes.func.isRequired,
+  onClickSubmitOrderCallback: PropTypes.func.isRequired,
+  orderConfirmed: PropTypes.bool.isRequired
 };
 
 export default chatOrder;

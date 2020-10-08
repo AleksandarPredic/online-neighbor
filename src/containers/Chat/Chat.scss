@@ -122,10 +122,6 @@
   }
 
   @media all and (max-width: $brakepoint__sxx-max){
-    .Products__wrapper {
-      height: 170px;
-    }
-
     .Product {
       flex: 0 0 55vw;
     }

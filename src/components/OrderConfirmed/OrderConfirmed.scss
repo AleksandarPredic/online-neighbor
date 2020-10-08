@@ -1,0 +1,44 @@
+@import "src/assets/scss/variables/colors";
+
+.OrderConfirmed {
+  margin: 0 0 20px 0;
+  border-top: 1px solid $background__chat-secondary;
+  padding-top: 20px;
+
+  > .Message:first-child {
+    margin-bottom: 0;
+  }
+
+  .Products {
+    margin: 0 0 20px 0;
+  }
+
+  .Products__wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .Products__message {
+    padding: 5px 10px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 1.4rem;
+  }
+
+  .Product {
+    flex: 0 0 auto;
+    margin-right: 15px;
+  }
+
+  .Product__images-wrapper,
+  .Product__images {
+    height: 40px;
+    width: 40px;
+  }
+
+  .Product__qty {
+    left: auto;
+    right: -13px;
+  }
+}

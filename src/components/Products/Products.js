@@ -4,7 +4,6 @@ import './Products.scss';
 import Product from './Product/Product';
 
 const products = props => {
-  console.log(props.products);
   const products = Object.values(props.products).map(product => {
     return (
       <Product
@@ -17,7 +16,7 @@ const products = props => {
         onClickProductCallback={props.onClickProductCallback}
       />
     )
-  })
+  });
 
   const classes = [
     'Products',
@@ -29,7 +28,7 @@ const products = props => {
       <div className="Products__wrapper">
         {products}
       </div>
-      {props.message ? <small>{props.message}</small> : null}
+      {props.message ? <small className="Products__message">{props.message}</small> : null}
     </div>
   );
 };

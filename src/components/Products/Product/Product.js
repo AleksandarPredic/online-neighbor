@@ -5,13 +5,15 @@ import './Product.scss';
 const product = props => {
   let images = '';
   if (props.images.length > 0) {
-    images = props.images.map(image => <img key={image.src} src={image.src} alt={image.alt} />);
+    images = <div className="Product__images-wrapper">
+      {props.images.map(image => <img key={image.src} src={image.src} alt={image.alt} />)}
+    </div>;
   }
 
   const productInnerHtml =
     <React.Fragment>
       <div className="Product__images">
-        <div className="Product__images-wrapper">{images}</div>
+        {images}
         {props.qty ? <span className="Product__qty">{props.qty}</span> : null}
       </div>
       {props.price ? <span className="Product__price">{props.price.toFixed(2)} DIN</span> : null}

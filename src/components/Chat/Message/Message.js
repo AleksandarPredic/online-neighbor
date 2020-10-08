@@ -19,13 +19,19 @@ const message = props => {
     imageSrc = userImage;
   }
 
+  const newDate = new Date();
+  let time = "Time: " + newDate.toLocaleTimeString();
+
   return (
     <div className={classes}>
-      <div className="Message__image">
-        <img alt="Robot" src={imageSrc} />
-      </div>
-      <div className="Message__messages">
-        {messages}
+      <div className="Message__content">
+        <div className="Message__image">
+          <img alt="Robot" src={imageSrc} />
+        </div>
+        <div className="Message__messages">
+          {messages}
+          <small className="Message__time">{time}</small>
+        </div>
       </div>
     </div>
   );

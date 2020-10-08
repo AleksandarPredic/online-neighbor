@@ -6,6 +6,7 @@ import ProductsSearch from '../../components/Chat/ProductsSearch/ProductsSearch'
 import axiosProducts from '../../axios/axios-products';
 import Products from '../../components/Products/Products';
 import ChatOrder from '../../components/Chat/ChatOrder/ChatOrder';
+import OrderConfirmed from "../../components/OrderConfirmed/OrderConfirmed";
 
 class Chat extends Component {
   state = {
@@ -14,7 +15,9 @@ class Chat extends Component {
     searchedProducts: {},
     order: {
       products: {} // id: qty
-    }
+    },
+    orderSubmitted: false,
+    orderConfirmed: false
   }
 
   componentDidMount() {
@@ -56,6 +59,12 @@ class Chat extends Component {
         console.log(error);
         // TODO: handle error
       })
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.state.orderSubmitted) {
+      setTimeout(this.confirmOrderHandler, 3000);
+    }
   }
 
   searchProductsHandler = (event) => {
@@ -167,7 +176,34 @@ class Chat extends Component {
 
   }
 
+  submitOrderHandler = () => {
+    this.setState((prevState, props) => {
+      return {
+        orderSubmitted: true
+      }
+    }, this.clearProductSearchHandler);
+
+  }
+
+  confirmOrderHandler = () => {
+    this.setState((prevState, props) => {
+      return {
+        orderConfirmed: true
+      }
+    });
+  }
+
   render() {
+
+    const orderSubmittedMessage = this.state.orderSubmitted
+      ? <Message type="robot">
+        {[
+            'Thanks Mate! I\'ll check the supplies and confirm the list asap!',
+            'I\'ll send you a confirmation here.',
+        ]}
+      </Message>
+      : '';
+
     return (
       <React.Fragment>
         <Backdrop show={true} />
@@ -181,7 +217,18 @@ class Chat extends Component {
               allProducts={this.state.allProducts}
               products={this.state.order.products}
               onClickProductCallback={this.chatOrderRemoveProductsHandler}
+              onClickSubmitOrderCallback={this.submitOrderHandler}
+              orderConfirmed={this.state.orderSubmitted}
             />
+            {orderSubmittedMessage}
+            {
+              this.state.orderConfirmed
+                ? <OrderConfirmed
+                  allProducts={this.state.allProducts}
+                  products={this.state.order.products}
+                />
+                : null
+            }
           </main>
           <footer>
             <Products
