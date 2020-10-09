@@ -8,6 +8,7 @@ const OrderConfirmed = props => {
   const scrollTo = useRef(null);
 
   useEffect(() => {
+    console.log('useEffect');
     scrollTo.current.scrollIntoView({
       behavior: "smooth",
       block: "nearest",
@@ -25,16 +26,9 @@ const OrderConfirmed = props => {
 
     product.qty = orderProducts[productId];
     product.name = '';
-    product.price = null;
 
     return product;
   });
-
-  const style = {
-    opacity: 0,
-    pointerEvents: 'none',
-    height: '1px'
-  };
 
   // TODO: Optimize not to render until the state is right
   return (

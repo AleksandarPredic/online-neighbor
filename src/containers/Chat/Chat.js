@@ -62,12 +62,19 @@ class Chat extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.state.orderSubmitted) {
-      setTimeout(this.confirmOrderHandler, 3000);
+    if (this.state.orderConfirmed) {
+      return false;
     }
+
+    if (! this.state.orderSubmitted) {
+      return false;
+    }
+
+    setTimeout(this.confirmOrderHandler, 8000);
   }
 
   searchProductsHandler = (event) => {
+    event.preventDefault();
     const searchVal = event.target.value;
 
     const allProducts = {...this.state.allProducts};

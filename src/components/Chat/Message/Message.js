@@ -21,7 +21,7 @@ const message = props => {
 
   const newDate = new Date();
   let time = "Time: " + newDate.toLocaleTimeString();
-
+console.log('message');
   return (
     <div className={classes}>
       <div className="Message__content">
