@@ -2,7 +2,8 @@
 
 ## Demo
 For the demo please visit this link [Demo](https://online-neighbor.acapredic.com/)
-Important: We only have "Mleko" products. So please only search for "Mleko" or "Kravica" :) 
+
+**Important**: We only have "Mleko" products. So please only search for "Mleko" or "Kravica" :) 
 
 It can also be installed as a PWA on your Android or IOS phone.
 
