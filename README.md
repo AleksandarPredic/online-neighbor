@@ -8,6 +8,13 @@ It can also be installed as a PWA on your Android or IOS phone.
 
 There will be more products soon.
 
+## Short description
+My personal React project. Use the React for the client side and have the data on the separate domain via headless WordPress instance.
+
+This is an exercise to build the entertaining way of ordering the products from the local store.
+
+Important: This is a MVP.
+
 ## Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
