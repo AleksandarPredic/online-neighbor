@@ -1,4 +1,4 @@
-# My First react project
+# Online neighbor
 
 ## Demo
 For the demo please visit this link [Demo](https://online-neighbor.acapredic.com/)
