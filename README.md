@@ -1,3 +1,15 @@
+# My First react project
+
+## Demo
+For the demo please visit this link [Demo](https://online-neighbor.acapredic.com/)
+Important: We only have "Mleko" products. So please only search for "Mleko" or "Kravica" :) 
+
+It can also be installed as a PWA on your Android or IOS phone.
+
+There will be more products soon.
+
+## Create React App
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
