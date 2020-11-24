@@ -11,7 +11,8 @@ There will be more products soon.
 ## Short description
 My personal React project. Use the React for the client side and have the data on the separate domain via headless WordPress instance.
 
-This is an exercise to build the entertaining way of ordering the products from the local store.
+This is an exercise to build the entertaining way of ordering the products from the local store. 
+And of course to practice as this is my first React project.
 
 Important: This is a MVP.
 
